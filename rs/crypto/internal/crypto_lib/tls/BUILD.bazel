@@ -1,27 +1,18 @@
+load("@crate_index//:defs.bzl", "all_crate_deps")
 load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test_suite")
 
 package(default_visibility = ["//rs/crypto:__subpackages__"])
 
-DEPENDENCIES = [
+DEPENDENCIES = all_crate_deps() + [
     "//rs/crypto/internal/crypto_lib/basic_sig/ed25519",
     "//rs/crypto/secrets_containers",
     "//rs/types/types",
-    "@crate_index//:rcgen_0_11",
-    "@crate_index//:rand_0_8_4",
-    "@crate_index//:serde",
-    "@crate_index//:time",
-    "@crate_index//:zeroize",
 ]
 
-DEV_DEPENDENCIES = [
+DEV_DEPENDENCIES = all_crate_deps(normal_dev = True) + [
     "//rs/crypto/node_key_validation",
     "//rs/protobuf",
     "//rs/crypto/test_utils/reproducible_rng",
-    "@crate_index//:assert_matches",
-    "@crate_index//:hex",
-    "@crate_index//:rand_chacha_0_3_1",
-    "@crate_index//:serde_cbor",
-    "@crate_index//:x509-parser",
 ]
 
 rust_library(

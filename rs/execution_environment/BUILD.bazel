@@ -1,9 +1,10 @@
+load("@crate_index//:defs.bzl", "all_crate_deps")
 load("@rules_rust//rust:defs.bzl", "rust_doc_test", "rust_library", "rust_test", "rust_test_suite")
 load("//bazel:defs.bzl", "rust_bench")
 
 package(default_visibility = ["//visibility:public"])
 
-DEPENDENCIES = [
+DEPENDENCIES = all_crate_deps() + [
     # Keep sorted.
     "//rs/canister_sandbox/replica_controller",
     "//rs/config",
@@ -36,30 +37,11 @@ DEPENDENCIES = [
     "//rs/types/wasm_types",
     "//rs/utils",
     "//rs/utils/lru_cache",
-    "@crate_index//:candid",
-    "@crate_index//:crossbeam-channel",
-    "@crate_index//:hex",
-    "@crate_index//:ic-btc-interface",
-    "@crate_index//:lazy_static",
-    "@crate_index//:nix",
-    "@crate_index//:num-rational",
-    "@crate_index//:num-traits",
-    "@crate_index//:prometheus",
-    "@crate_index//:rand_0_8_4",
-    "@crate_index//:scoped_threadpool",
-    "@crate_index//:serde",
-    "@crate_index//:serde_bytes",
-    "@crate_index//:serde_cbor",
-    "@crate_index//:slog",
-    "@crate_index//:strum",
-    "@crate_index//:threadpool",
-    "@crate_index//:tokio",
-    "@crate_index//:tower",
 ]
 
 MACRO_DEPENDENCIES = []
 
-DEV_DEPENDENCIES = [
+DEV_DEPENDENCIES = all_crate_deps(normal_dev = True) + [
     # Keep sorted.
     "//rs/interfaces/state_manager/mocks",
     "//rs/state_machine_tests",
@@ -69,17 +51,6 @@ DEV_DEPENDENCIES = [
     "//rs/test_utilities/metrics",
     "//rs/types/types_test_utils",
     "//rs/universal_canister/lib",
-    "@crate_index//:assert_matches",
-    "@crate_index//:criterion",
-    "@crate_index//:ic-btc-test-utils",
-    "@crate_index//:insta",
-    "@crate_index//:libflate",
-    "@crate_index//:maplit",
-    "@crate_index//:mockall_0_7_2",
-    "@crate_index//:proptest",
-    "@crate_index//:tempfile",
-    "@crate_index//:wasmparser",
-    "@crate_index//:wat",
 ]
 
 MACRO_DEV_DEPENDENCIES = [
