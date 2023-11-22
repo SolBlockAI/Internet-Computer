@@ -18,7 +18,7 @@ serde_json = { workspace = true }
 serde_cbor = { workspace = true }
 serde_bytes = { workspace = true }
 serde_repr = "0.1"
-flatbuffers = "0.6.1"
+flatbuffers = "22.10.26"
 bincode = "1.2.1"
 thrift = "0.13.0"
 ordered-float = "1.0"
