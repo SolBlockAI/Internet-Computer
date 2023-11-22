@@ -10,7 +10,7 @@ documentation.workspace = true
 
 [dependencies]
 bson = "0.14"
-capnp = "0.12"
+capnp = "0.13"
 prost = "0.6"
 prost-types = "0.6"
 serde = { workspace = true }
